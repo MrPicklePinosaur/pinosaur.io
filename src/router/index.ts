@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import ProjectPage from '../views/ProjectPage.vue';
 
 Vue.use(VueRouter);
 
@@ -23,8 +24,14 @@ const routes: Array<RouteConfig> = [
     path: "/projects",
     name: "Projects",
     component: () =>
-      import("../views/Projects.vue")
-  }
+      import("../views/Projects.vue"),
+    children: [
+      {
+        path: "/:id",
+        component: ProjectPage
+      }
+    ]
+  },
 ];
 
 const router = new VueRouter({
