@@ -21,16 +21,15 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
+    name: "ProjectPage",
+    path: "/projects/:id",
+    component: ProjectPage
+  },
+  {
     path: "/projects",
     name: "Projects",
     component: () =>
       import("../views/Projects.vue"),
-    children: [
-      {
-        path: "/:id",
-        component: ProjectPage
-      }
-    ]
   },
 ];
 

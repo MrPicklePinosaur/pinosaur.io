@@ -1,7 +1,6 @@
 <template>
     <div>
         <h1>{{projectInfo.name}}</h1>
-        <p>{{this.$route.params.id}}</p>
     </div>
 </template>
 
@@ -17,7 +16,7 @@ export default class ProjectPage extends Vue {
 
     projectInfo?: ProjectInfo;
 
-    mounted() {
+    created() {
         this.projectInfo = projectList.find(p => p.name == decodeURI(this.$route.params.id));
     }
 }
