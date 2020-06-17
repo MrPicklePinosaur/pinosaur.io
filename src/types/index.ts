@@ -10,7 +10,7 @@ export type TagInfo = {
 }
 
 interface TagTypes {
-  [name: string]: TagInfo
+  [tagType: string]: TagInfo
 }
 
 export const TagTypes: TagTypes = {
