@@ -3,6 +3,11 @@
 
         <el-card class="box-card" shadow="hover"> 
             <router-link :to="`projects/${this.projectUrl}`">{{projectInfo.name}}</router-link>
+
+            <el-tag
+                v-for="(tag, i) in projectInfo.tags"
+                :key="i" 
+            >{{tag.name}}</el-tag>
         </el-card>
 
     </div>

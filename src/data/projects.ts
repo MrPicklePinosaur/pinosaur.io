@@ -1,13 +1,24 @@
-import { ProjectInfo } from '@/types';
+import { ProjectInfo, TagTypes } from '@/types';
 
 export const projectList: ProjectInfo[] = [ 
     {
-      name: 'Pixel Studios'
+      name: 'Pixel Studios',
+      tags: [
+        TagTypes.PYTHON,
+      ] 
     },
     {
-      name: 'Pixel Dungeon'
+      name: 'Pixel Dungeon',
+      tags: [
+        TagTypes.GAME,
+        TagTypes.PYTHON,
+      ] 
     },
     {
-      name: 'Space Invaders Demastered'
+      name: 'Space Invaders Demastered',
+      tags: [
+        TagTypes.GAME,
+        TagTypes.JAVA,
+      ] 
     },
   ]
