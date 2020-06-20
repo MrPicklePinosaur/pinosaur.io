@@ -17,18 +17,21 @@
       </div>
 
       <div class="new-tag-main">
-        <el-autocomplete 
+        <el-select 
           v-if="isInputtingTag" 
           class="new-tag-input inline-input" 
-          @blur="onNewTagClosed"
-          @keyup.enter.native="onCreateNewTag"
-          :fetch-suggestions="getSuggestions"
+          placeholder="Select"
           v-model="searchTagContents"
+          filterable
+          @keyup.enter.native="onCreateNewTag"
         >
-          <!-- <template slot-scope="{ item }">
-            <div class="value">{{ item.value }}</div>
-          </template> -->
-        </el-autocomplete>
+          <el-option
+            v-for="(tag,i) in getTagNames"
+            :key="i"
+            :label="tag"
+            :value="tag"
+          ></el-option>
+        </el-select>
 
         <el-button v-else class="new-tag-tag" @click="onNewTagClicked">
           + New Tag
@@ -64,20 +67,8 @@ export default class Projects extends Vue{
   //tag search
   isInputtingTag = false;
 
-  getSuggestions(queryString: string, cb: any) {
-    const allTags = Object.keys(TagTypes)
-    .map((key, index) => {
-      return {"value": TagTypes[key].name.toLowerCase()};
-    });
-
-    const filter = queryString ? allTags 
-      .filter((tagObj) => {
-        return tagObj["value"].indexOf(queryString.toLowerCase()) === 0;
-      }) : allTags;    
-
-    console.log(filter)
-
-    cb(filter);
+  get getTagNames() {
+    return Object.keys(TagTypes).map((key,index) => key);
   }
 
   onNewTagClicked() {
@@ -88,8 +79,12 @@ export default class Projects extends Vue{
     this.isInputtingTag = false;
   }
 
-  // onCreateNewTag() {
-  // }
+  onCreateNewTag() {
+    if (!Object.prototype.hasOwnProperty.call(TagTypes,this.searchTagContents)) {
+      return; //if the tag is invalid, handle error or sm
+    } 
+    this.searchTags.push(TagTypes[this.searchTagContents]);
+  }
 
   // onCloseTag() {
   // } 
