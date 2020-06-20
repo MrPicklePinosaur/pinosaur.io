@@ -2,6 +2,8 @@
 export type ProjectInfo = {
   name: string,
   tags: TagInfo[],
+  description: string,
+  imageLinks: {[imageName: string]: string},
 }
 
 export type TagInfo = {

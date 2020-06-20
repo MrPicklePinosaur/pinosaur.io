@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+
+    <h1>Daniel Liu</h1>
+    <h4>pinosaur</h4>
+
   </div>
 </template>
 
@@ -9,7 +12,9 @@
 
 export default {
   name: "Home",
+
   components: {
+    
   }
 };
 </script>

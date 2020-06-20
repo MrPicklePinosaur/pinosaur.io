@@ -49,7 +49,9 @@
 
     </div>
 
-    <project v-for="(p, i) in getProjectList" :key="i" :projectInfo="p"></project>
+    <div class="project-grid">
+      <project v-for="(p, i) in getProjectList" :key="i" :projectInfo="p"></project>
+    </div>
 
   </div>
 </template>
@@ -87,8 +89,6 @@ export default class Projects extends Vue{
     //if there are no options just shall all the projects (starting with featured)
     
     const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
-
-    // if (selectedTagNames.length === 0) { return projectList; }
 
     const filtered = projectList
       .filter((project: ProjectInfo) => { //filter by tags
@@ -143,6 +143,15 @@ export default class Projects extends Vue{
     height: 100%;
 
     padding: 1rem;
+  }
+  
+  .project-grid {
+    --min-card-size: 200px;
+
+    display: grid;
+    gap: 1rem;
+
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-size), 1fr));
   }
 
 </style>
