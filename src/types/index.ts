@@ -5,6 +5,7 @@ export type ProjectInfo = {
 }
 
 export type TagInfo = {
+  name: string,
   color: string, //make this better typed later (custom color type or sm)
 }
 
@@ -13,13 +14,16 @@ interface TagTypes {
 }
 
 export const TagTypes: TagTypes = {
-  Game: {
+  GAME: {
+    name: 'Game',
     color: '#FF0000'
   }, 
-  Python: {
+  PYTHON: {
+    name: 'Python',
     color: '#FF0000'
   }, 
-  Java: {
+  JAVA: {
+    name: 'Java',
     color: '#FF0000'
   }, 
 };

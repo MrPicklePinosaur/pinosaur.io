@@ -13,19 +13,25 @@
     <div>
       
       <div>
-
+        <el-tag
+            v-for="(tag, i) in searchTags"
+            :key="i" 
+            closable
+            @close="onCloseTag(tag)"
+        >{{tag.name}}</el-tag>
       </div>
 
       <div class="new-tag-main">
         <el-select 
           v-if="isInputtingTag" 
           class="new-tag-input inline-input" 
+          popper-class=""
           placeholder="Select"
           v-model="searchTagContents"
           filterable
-          @keyup.enter.native="onCreateNewTag"
-        >
-          <el-option
+          @blur="onSubmitTag"
+          @change="onSubmitTag"
+        ><el-option
             v-for="(tag,i) in getTagNames"
             :key="i"
             :label="tag"
@@ -50,6 +56,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { projectList } from '@/data/projects'
 import Project from '@/components/Project.vue'
 import { ProjectInfo, TagInfo, TagTypes } from '@/types'
+import { Tag } from 'element-ui';
 
 @Component({
   components: {
@@ -68,26 +75,33 @@ export default class Projects extends Vue{
   isInputtingTag = false;
 
   get getTagNames() {
-    return Object.keys(TagTypes).map((key,index) => key);
+    const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
+
+    return Object.keys(TagTypes)
+      .map((key, index) => TagTypes[key].name)
+      .filter((name: string) => !selectedTagNames.includes(name));
   }
 
   onNewTagClicked() {
     this.isInputtingTag = true;
   }
 
-  onNewTagClosed() {
-    this.isInputtingTag = false;
+  onSubmitTag() {
+    const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
+
+    const results: TagInfo[] = Object.keys(TagTypes)
+      .map((key,index) => TagTypes[key]) 
+      .filter((tag: TagInfo) => tag.name===this.searchTagContents)
+      .filter((tag: TagInfo) => !selectedTagNames.includes(tag.name)); //also tag not already slected
+    if (results.length === 0) { return; } //no result found
+    this.searchTags.push(results[0]);
+
+    this.isInputtingTag = false; //hide tag
   }
 
-  onCreateNewTag() {
-    if (!Object.prototype.hasOwnProperty.call(TagTypes,this.searchTagContents)) {
-      return; //if the tag is invalid, handle error or sm
-    } 
-    this.searchTags.push(TagTypes[this.searchTagContents]);
-  }
-
-  // onCloseTag() {
-  // } 
+  onCloseTag(tag: TagInfo) {
+    this.searchTags = this.searchTags.filter(({name}: TagInfo) => tag.name != name);
+  } 
 
   created() {
     this.projectList = projectList;
