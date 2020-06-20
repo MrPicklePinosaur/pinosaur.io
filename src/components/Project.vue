@@ -1,7 +1,13 @@
 <template>
     <div>
 
-        <el-card class="box-card project-card" shadow="hover"> 
+        <el-card 
+            class="box-card project-card" 
+            shadow="hover"
+            v-tippy="{placement: 'top', arrow: true}"
+            content="project"
+            allowHTML: true
+        > 
             <router-link :to="`projects/${this.projectUrl}`">{{projectInfo.name}}</router-link>
 
             <div class="tag-list">

@@ -8,10 +8,14 @@ export const projectList: ProjectInfo[] = [
         TagTypes.PYTHON,
       ],
       description: 'paint program lmao',
-      imageLinks: {
-        'stamps': imgURL+'PixelDungeon/stamps.png'
-      }, 
+      images: [
+        imgURL+"PixelStudios/stamps.png",
+        imgURL+"PixelStudios/color.png",
+        imgURL+"PixelStudios/paint.png",
+        imgURL+"PixelStudios/paint2.png",
+      ],
     },
+    
     {
       name: 'Pixel Dungeon',
       tags: [
@@ -19,8 +23,9 @@ export const projectList: ProjectInfo[] = [
         TagTypes.PYTHON,
       ],
       description: 'roguelike dungeon crawler',
-      imageLinks: {}, 
+      images: [],
     },
+
     {
       name: 'Space Invaders Demastered',
       tags: [
@@ -28,6 +33,6 @@ export const projectList: ProjectInfo[] = [
         TagTypes.JAVA,
       ],
       description: 'space shooter made with libGDX',
-      imageLinks: {}, 
+      images: [],
     },
   ]

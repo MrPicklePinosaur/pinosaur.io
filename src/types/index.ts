@@ -3,7 +3,7 @@ export type ProjectInfo = {
   name: string,
   tags: TagInfo[],
   description: string,
-  imageLinks: {[imageName: string]: string},
+  images: string[],
 }
 
 export type TagInfo = {
