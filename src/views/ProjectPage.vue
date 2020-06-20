@@ -12,8 +12,6 @@ import { ProjectInfo } from '@/types';
 @Component
 export default class ProjectPage extends Vue {
 
-    id = this.$route.params.id;
-
     projectInfo?: ProjectInfo;
 
     created() {

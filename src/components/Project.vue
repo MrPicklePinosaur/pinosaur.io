@@ -7,6 +7,8 @@
             <el-tag
                 v-for="(tag, i) in projectInfo.tags"
                 :key="i" 
+                :color="tag.color"
+                :style="{color: tag.textColor}"
             >{{tag.name}}</el-tag>
         </el-card>
 

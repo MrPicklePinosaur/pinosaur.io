@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p v-text="searchBarContents"></p>
     <div>
       <el-input
         autocomplete="off"
@@ -16,7 +15,9 @@
         <el-tag
             v-for="(tag, i) in searchTags"
             :key="i" 
+            :style="{color: tag.textColor}"
             closable
+            :color="tag.color"
             @close="onCloseTag(tag)"
         >{{tag.name}}</el-tag>
       </div>
@@ -29,6 +30,8 @@
           placeholder="Select"
           v-model="searchTagContents"
           filterable
+          no-match-text="No Matches"
+          no-data-text="No Data"
           @blur="onSubmitTag"
           @change="onSubmitTag"
         ><el-option
@@ -46,7 +49,7 @@
 
     </div>
 
-    <project v-for="(p, i) in projectList" :key="i" :projectInfo="p"></project>
+    <project v-for="(p, i) in getProjectList" :key="i" :projectInfo="p"></project>
 
   </div>
 </template>
@@ -65,11 +68,9 @@ import { Tag } from 'element-ui';
 })
 export default class Projects extends Vue{
 
-  projectList: ProjectInfo[] = [];
-
   searchBarContents = '';
   searchTagContents = '';
-  searchTags: TagInfo[] = [];
+  searchTags: TagInfo[] = [ TagTypes.FEATURED ];
 
   //tag search
   isInputtingTag = false;
@@ -80,6 +81,26 @@ export default class Projects extends Vue{
     return Object.keys(TagTypes)
       .map((key, index) => TagTypes[key].name)
       .filter((name: string) => !selectedTagNames.includes(name));
+  }
+
+  get getProjectList() {
+    //if there are no options just shall all the projects (starting with featured)
+    
+    const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
+
+    // if (selectedTagNames.length === 0) { return projectList; }
+
+    const filtered = projectList
+      .filter((project: ProjectInfo) => { //filter by tags
+        for (const searchTag of selectedTagNames) {
+          const thisProjectTagNames = project.tags.map((tag: TagInfo) => tag.name);
+
+          if (!thisProjectTagNames.includes(searchTag)) { return false; }
+        }
+        return true;
+      })
+
+    return filtered
   }
 
   onNewTagClicked() {
@@ -96,6 +117,7 @@ export default class Projects extends Vue{
     if (results.length === 0) { return; } //no result found
     this.searchTags.push(results[0]);
 
+    this.searchTagContents = ''; //clear selection
     this.isInputtingTag = false; //hide tag
   }
 
@@ -103,9 +125,6 @@ export default class Projects extends Vue{
     this.searchTags = this.searchTags.filter(({name}: TagInfo) => tag.name != name);
   } 
 
-  created() {
-    this.projectList = projectList;
-  }
 }
 </script>
 
