@@ -1,12 +1,19 @@
 <template>
     <div>
+        
+        <tippy
+            :to="projectInfo.name"
+        >
+            <div id="popup" class="hidden">
+                <p>projects</p>
+                <h1>LMAO</h1>
+            </div> 
+        </tippy>
 
         <el-card 
             class="box-card project-card" 
             shadow="hover"
-            v-tippy="{placement: 'top', arrow: true}"
-            content="project"
-            allowHTML: true
+            :name="projectInfo.name"
         > 
             <router-link :to="`projects/${this.projectUrl}`">{{projectInfo.name}}</router-link>
 
@@ -20,7 +27,10 @@
             </div>
 
             <p>{{ projectInfo.description }}</p>
+
+
         </el-card>
+
 
     </div>
 </template>
@@ -38,6 +48,7 @@ export default class Project extends Vue{
     get projectUrl(): string {
         return encodeURI(this.projectInfo.name);
     }
+
 }
 
 </script>
