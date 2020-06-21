@@ -1,9 +1,15 @@
+export type ProjectLinks = {
+  githubLink?: string,
+  devpostLink?: string,
+  itchLink?: string,
+}
 
 export type ProjectInfo = {
   name: string,
   tags: TagInfo[],
   description: string,
   images: string[],
+  links: ProjectLinks,
 }
 
 export type TagInfo = {
