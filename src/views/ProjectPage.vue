@@ -3,23 +3,39 @@
         <h1>{{projectInfo.name}}</h1>
 
         <a 
-            :href="this.projectInfo.links.githubLink"
-            v-if="this.projectInfo.links.githubLink !== undefined"
+            :href="projectInfo.links.githubLink"
+            v-if="projectInfo.links.githubLink !== undefined"
         >
             <font-awesome-icon :icon="['fab','github-square']" size="2x" />
         </a>
         <a 
-            :href="this.projectInfo.links.devpostLink"
-            v-if="this.projectInfo.links.devpostLink !== undefined"
+            :href="projectInfo.links.devpostLink"
+            v-if="projectInfo.links.devpostLink !== undefined"
         >
             <font-awesome-icon :icon="['fab','dev']" size="2x" />
         </a>
         <a 
-            :href="this.projectInfo.links.itchLink"
-            v-if="this.projectInfo.links.itchLink !== undefined"
+            :href="projectInfo.links.itchLink"
+            v-if="projectInfo.links.itchLink !== undefined"
         >
             <font-awesome-icon :icon="['fab','itch-io']" size="2x" />
         </a>
+
+        <p>{{projectInfo.description}}</p>
+
+        <el-carousel
+            :interval="4000"
+            type="card"
+        >
+            <el-carousel-item
+                v-for="(img,i) in projectInfo.images"
+                :key="i"
+            >
+                <p>{{img}}</p>
+                <img :src="img">
+            </el-carousel-item>
+        </el-carousel>
+
     </div>
 </template>
 

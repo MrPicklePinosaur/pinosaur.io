@@ -3,34 +3,35 @@
         
         <tippy
             :to="projectInfo.name"
+            arrow="true"
+            placement="right"
+            interactive="true"
+            :flipBehavior="['right','left']"
         >
             <div id="popup" class="hidden">
-                <p>projects</p>
-                <h1>LMAO</h1>
+                <h1>{{projectInfo.name}}</h1>
+                <p>{{projectInfo.description}}</p>
             </div> 
         </tippy>
 
-        <el-card 
-            class="box-card project-card" 
-            shadow="hover"
-            :name="projectInfo.name"
-        > 
-            <router-link :to="`projects/${this.projectUrl}`">{{projectInfo.name}}</router-link>
+        <router-link :to="`projects/${this.projectUrl}`">
+            <el-card 
+                class="box-card project-card" 
+                shadow="hover"
+                :name="projectInfo.name"
+            > 
+                <p>{{projectInfo.name}}</p>
+                <div class="tag-list">
+                    <el-tag
+                        v-for="(tag, i) in projectInfo.tags"
+                        :key="i" 
+                        :color="tag.color"
+                        :style="{color: tag.textColor}"
+                    >{{tag.name}}</el-tag>
+                </div>
 
-            <div class="tag-list">
-                <el-tag
-                    v-for="(tag, i) in projectInfo.tags"
-                    :key="i" 
-                    :color="tag.color"
-                    :style="{color: tag.textColor}"
-                >{{tag.name}}</el-tag>
-            </div>
-
-            <p>{{ projectInfo.description }}</p>
-
-
-        </el-card>
-
+            </el-card>
+        </router-link>
 
     </div>
 </template>
@@ -61,6 +62,7 @@ export default class Project extends Vue{
         align-items: center;
         flex-direction: column;
         justify-content: center;
+        height: 15rem;
     }
 
     .tag-list {

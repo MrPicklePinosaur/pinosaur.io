@@ -9,10 +9,10 @@ export const projectList: ProjectInfo[] = [
     ],
     description: 'paint program lmao',
     images: [
-      imgURL+"PixelStudios/stamps.png",
-      imgURL+"PixelStudios/color.png",
-      imgURL+"PixelStudios/paint.png",
-      imgURL+"PixelStudios/paint2.png",
+      imgURL+"PixelStudios/stamps.PNG",
+      imgURL+"PixelStudios/color.PNG",
+      imgURL+"PixelStudios/paint.PNG",
+      imgURL+"PixelStudios/paint2.PNG",
     ],
     links: {
       githubLink: 'https://github.com/MrPicklePinosaur/Pixel-Studios'

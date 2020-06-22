@@ -151,7 +151,7 @@ export default class Projects extends Vue{
     display: grid;
     gap: 1rem;
 
-    grid-template-columns: repeat(auto-fit, minmax(var(--min-card-size), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--min-card-size), 1fr));
   }
 
 </style>
