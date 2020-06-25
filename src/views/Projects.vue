@@ -62,6 +62,9 @@ import { projectList } from '@/data/projects'
 import Project from '@/components/Project.vue'
 import { ProjectInfo, TagInfo, TagTypes } from '@/types'
 import { Tag } from 'element-ui';
+import { namespace } from 'vuex-class'
+
+const page = namespace('page');
 
 @Component({
   components: {
@@ -72,21 +75,18 @@ export default class Projects extends Vue{
 
   searchBarContents = '';
   searchTagContents = '';
-  searchTags: TagInfo[] = [ TagTypes.FEATURED ];
+
+  @page.State
+  public searchTags!: TagInfo[]; 
 
   //tag search
   isInputtingTag = false;
 
-  get getTagNames() {
-    const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
-
-    return Object.keys(TagTypes)
-      .map((key, index) => TagTypes[key].name)
-      .filter((name: string) => !selectedTagNames.includes(name));
-  }
+  @page.Getter
+  public getTagNames!: string[]; 
 
   get getProjectList() {
-    //if there are no options just shall all the projects (starting with featured)
+    //if there are no options just show all the projects (starting with featured)
     
     const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
 
