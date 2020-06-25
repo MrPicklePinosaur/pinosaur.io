@@ -1,6 +1,5 @@
 import { ProjectInfo, TagTypes } from '@/types';
 
-const imgURL = '@/assets/projects/';
 export const projectList: ProjectInfo[] = [ 
   {
     name: 'Pixel Studios',
@@ -9,10 +8,10 @@ export const projectList: ProjectInfo[] = [
     ],
     description: 'paint program lmao',
     images: [
-      imgURL+"PixelStudios/stamps.PNG",
-      imgURL+"PixelStudios/color.PNG",
-      imgURL+"PixelStudios/paint.PNG",
-      imgURL+"PixelStudios/paint2.PNG",
+      "PixelStudios/stamps.png",
+      "PixelStudios/color.png",
+      "PixelStudios/paint.png",
+      "PixelStudios/paint2.png",
     ],
     links: {
       githubLink: 'https://github.com/MrPicklePinosaur/Pixel-Studios'
