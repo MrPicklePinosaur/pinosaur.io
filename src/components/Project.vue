@@ -11,6 +11,15 @@
             <div id="popup" class="hidden">
                 <h1>{{projectInfo.name}}</h1>
                 <p>{{projectInfo.description}}</p>
+
+                <div class="tag-list">
+                    <el-tag
+                        v-for="(tag, i) in projectInfo.tags"
+                        :key="i" 
+                        :color="tag.color"
+                        :style="{color: tag.textColor}"
+                    >{{tag.name}}</el-tag>
+                </div>
             </div> 
         </tippy>
 
@@ -21,14 +30,7 @@
                 :name="projectInfo.name"
             > 
                 <p>{{projectInfo.name}}</p>
-                <div class="tag-list">
-                    <el-tag
-                        v-for="(tag, i) in projectInfo.tags"
-                        :key="i" 
-                        :color="tag.color"
-                        :style="{color: tag.textColor}"
-                    >{{tag.name}}</el-tag>
-                </div>
+
 
             </el-card>
         </router-link>

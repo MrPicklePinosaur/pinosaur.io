@@ -2,6 +2,7 @@
   <div>
     <div>
       <el-input
+        class="project-search"
         autocomplete="off"
         spellcheck="off"
         placeholder="search projects"
@@ -9,23 +10,23 @@
       ></el-input>
     </div>
 
-    <div>
+    <div class="tag-search-container"> 
       
-      <div>
-        <el-tag
-            v-for="(tag, i) in searchTags"
-            :key="i" 
-            :style="{color: tag.textColor}"
-            closable
-            :color="tag.color"
-            @close="onCloseTag(tag)"
-        >{{tag.name}}</el-tag>
-      </div>
+      <el-tag
+          class="selected-tag-tag"
+          v-for="(tag, i) in searchTags"
+          :key="i" 
+          :style="{color: tag.textColor}"
+          closable
+          :color="tag.color"
+          @close="onCloseTag(tag)"
+      >{{tag.name}}</el-tag>
 
       <div class="new-tag-main">
         <el-select 
           v-if="isInputtingTag" 
           class="new-tag-input inline-input" 
+          size="small"
           popper-class=""
           placeholder="Select"
           v-model="searchTagContents"
@@ -42,7 +43,11 @@
           ></el-option>
         </el-select>
 
-        <el-button v-else class="new-tag-tag" @click="onNewTagClicked">
+        <el-button 
+          v-else class="new-tag-button" 
+          size="small"
+          @click="onNewTagClicked"
+        >
           + New Tag
         </el-button>
       </div>
@@ -51,6 +56,9 @@
 
     <div class="project-grid">
       <project v-for="(p, i) in getProjectList" :key="i" :projectInfo="p"></project>
+      <div v-if="getProjectList.length==0">
+        <p>Looks like there is nothing here :(</p>
+      </div>
     </div>
 
   </div>
@@ -136,19 +144,26 @@ export default class Projects extends Vue{
 
 <style>
 
+  .project-search {
+    width: 25%;
+  }
+  
+  .tag-search-container {
+    display: flex;
+    flex-direction: row;
+  }
+
   .new-tag-main {
+    width: 6rem;
   }
 
   .new-tag-input {
     width: 100%;
-    height: 100%;
   }
 
-  .new-tag-tag {
+  .new-tag-button {
     width: 100%;
-    height: 100%;
 
-    padding: 1rem;
   }
   
   .project-grid {
