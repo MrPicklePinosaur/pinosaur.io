@@ -31,8 +31,7 @@
                 v-for="(img,i) in projectInfo.images"
                 :key="i"
             >
-                <p>{{img}}</p>
-                <img :src="img">
+                <img :src="require('@/assets/projects/'+img)" />
             </el-carousel-item>
         </el-carousel>
 
@@ -52,6 +51,7 @@ export default class ProjectPage extends Vue {
     created() {
         this.projectInfo = projectList.find(p => p.name == decodeURI(this.$route.params.id));
     }
+
 }
 
 </script>
