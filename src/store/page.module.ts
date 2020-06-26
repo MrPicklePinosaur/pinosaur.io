@@ -5,7 +5,7 @@ import {  TagInfo, TagTypes } from '@/types'
 @Module({namespaced: true, name: 'page'})
 class Page extends VuexModule {
     
-  searchTags: TagInfo[] = [ TagTypes.FEATURED ];
+  public searchTags: TagInfo[] = [ TagTypes.FEATURED ];
 
   get getTagNames(): string[] {
     const selectedTagNames: string[] = this.searchTags.map((tag: TagInfo) => tag.name);
@@ -13,6 +13,16 @@ class Page extends VuexModule {
     return Object.keys(TagTypes)
       .map((key, index) => TagTypes[key].name)
       .filter((name: string) => !selectedTagNames.includes(name));
+  }
+
+  @Mutation
+  public addTag(data: {tagInfo: TagInfo}) {
+    this.searchTags.push(data.tagInfo);
+  }
+
+  @Mutation
+  public removeTag(data: {tagInfo: TagInfo}) {
+    this.searchTags = this.searchTags.filter(({name}: TagInfo) => data.tagInfo.name != name);
   }
 }
 export default Page;

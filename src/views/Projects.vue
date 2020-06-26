@@ -64,7 +64,7 @@ import { ProjectInfo, TagInfo, TagTypes } from '@/types'
 import { Tag } from 'element-ui';
 import { namespace } from 'vuex-class'
 
-const page = namespace('page');
+const page = namespace('Page');
 
 @Component({
   components: {
@@ -84,6 +84,12 @@ export default class Projects extends Vue{
 
   @page.Getter
   public getTagNames!: string[]; 
+
+  @page.Mutation
+  public addTag!: (data: {tagInfo: TagInfo}) => void; 
+
+  @page.Mutation
+  public removeTag!: (data: {tagInfo: TagInfo}) => void; 
 
   get getProjectList() {
     //if there are no options just show all the projects (starting with featured)
@@ -115,14 +121,14 @@ export default class Projects extends Vue{
       .filter((tag: TagInfo) => tag.name===this.searchTagContents)
       .filter((tag: TagInfo) => !selectedTagNames.includes(tag.name)); //also tag not already slected
     if (results.length === 0) { return; } //no result found
-    this.searchTags.push(results[0]);
+    this.addTag({tagInfo: results[0]});
 
     this.searchTagContents = ''; //clear selection
     this.isInputtingTag = false; //hide tag
   }
 
   onCloseTag(tag: TagInfo) {
-    this.searchTags = this.searchTags.filter(({name}: TagInfo) => tag.name != name);
+    this.removeTag({tagInfo: tag});
   } 
 
 }
