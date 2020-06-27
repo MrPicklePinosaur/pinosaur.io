@@ -25,7 +25,10 @@ export const projectList: ProjectInfo[] = [
       TagTypes.PYTHON,
     ],
     description: 'roguelike dungeon crawler',
-    images: [],
+    images: [
+      "PixelDungeon/chest.png",
+      "PixelDungeon/room.png",
+    ],
     links: {
       githubLink: 'https://github.com/MrPicklePinosaur/Pixel-Dungeon',
     }

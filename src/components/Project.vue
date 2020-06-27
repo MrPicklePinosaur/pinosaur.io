@@ -27,8 +27,14 @@
             <el-card 
                 class="box-card project-card" 
                 shadow="hover"
+                :body-style="{padding: '0px'}"
                 :name="projectInfo.name"
             > 
+                <img 
+                    class="card-img" 
+                    v-if="projectInfo.images.length>0"
+                    :src="require('@/assets/projects/'+projectInfo.images[0])" 
+                />
                 <p>{{projectInfo.name}}</p>
 
 
@@ -69,6 +75,10 @@ export default class Project extends Vue{
 
     .tag-list {
         flex-direction: row;
+    }
+
+    .card-img {
+        width: 100%;
     }
 
 </style>

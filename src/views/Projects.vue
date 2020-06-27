@@ -18,6 +18,7 @@
           :key="i" 
           :style="{color: tag.textColor}"
           closable
+          disable-transitions="true"
           :color="tag.color"
           @close="onCloseTag(tag)"
       >{{tag.name}}</el-tag>
