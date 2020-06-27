@@ -31,14 +31,12 @@ export default class App extends Vue {
   text-align: center;
   color: #2c3e50;
 }
-#nav {
-  padding: 30px;
+html {
+  height: 100%;
 }
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
 }
 </style>

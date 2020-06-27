@@ -1,14 +1,16 @@
 <template>
     <div class="nav-body">
-        <router-link 
-            v-for="(nav,i) in this.navItems" 
-            :key="i"
-            :to="nav.link"
-            v-tippy="{placement: 'bottom', arrow: 'true'}"
-            :content="nav.label"
-        >
-            <font-awesome-icon :icon="nav.iconName" size="small" />
-        </router-link>
+        <div class="navbar">
+            <router-link 
+                v-for="(nav,i) in this.navItems" 
+                :key="i"
+                :to="nav.link"
+                v-tippy="{placement: 'bottom', arrow: 'true'}"
+                :content="nav.label"
+            >
+                <font-awesome-icon :icon="nav.iconName" size="2x" />
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -38,7 +40,7 @@ export default class Navbar extends Vue {
         {
             label: 'Resume',
             iconName: 'file-alt',
-            link: '',
+            link: '/resume',
         },
     ]; 
 }
@@ -47,11 +49,15 @@ export default class Navbar extends Vue {
 <style scoped>
 
     .nav-body {
+        position: fixed;
+    }
+
+    .navbar {
         display: flex;
         justify-content: right;
     }
 
-    .nav-body a {
+    .navbar a {
         padding: .25rem;
         color: black;
     }
