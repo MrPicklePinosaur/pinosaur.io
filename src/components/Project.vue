@@ -7,10 +7,15 @@
             placement="right"
             interactive="true"
             :flipBehavior="['right','left']"
+            :style="{ padding: '0px', margin: '0px' }"
         >
             <div id="popup" class="hidden">
-                <h1>{{projectInfo.name}}</h1>
+                <p class="popup-title">{{projectInfo.name}}</p>
                 <p>{{projectInfo.description}}</p>
+                
+                <div class="img-list">
+
+                </div>
 
                 <div class="tag-list">
                     <el-tag
@@ -81,4 +86,13 @@ export default class Project extends Vue{
         width: 100%;
     }
 
+    #popup {
+        width: 15rem;
+        padding: 0; 
+        margin: 0;
+    }
+
+    .popup-title {
+        margin: 0;
+    }
 </style>

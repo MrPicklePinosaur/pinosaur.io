@@ -1,14 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/projects">Projects</router-link> |
-      <router-link to="/blog">Blog</router-link> |
-      <router-link to="/resume">Resume</router-link>
-    </div>
+    <navbar>
+
+    </navbar>
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Navbar from '@/components/Navbar.vue'
+
+@Component({
+  components: {
+    Navbar
+  }
+})
+export default class App extends Vue {
+
+}
+
+</script>
+
 <style>
 @import "https://unpkg.com/element-ui/lib/theme-chalk/index.css";
 #app {
