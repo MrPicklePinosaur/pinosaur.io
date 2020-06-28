@@ -55,17 +55,17 @@ export default class Home extends Vue {
     {
       iconName: 'github',
       hoverColor: '#B0B0B0',
-      link: '',
+      link: 'https://github.com/MrPicklePinosaur',
     },
     {
       iconName: 'dev',
       hoverColor: '#01579B',
-      link: '',
+      link: 'https://devpost.com/pinosaur'
     },
     {
       iconName: 'itch-io',
       hoverColor: '#F25958',
-      link: '',
+      link: 'https://pinosaur.itch.io/',
     },
   ]
 

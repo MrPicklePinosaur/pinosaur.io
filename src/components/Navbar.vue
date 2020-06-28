@@ -1,17 +1,32 @@
-<template>
+<template> 
+
     <div class="nav-body">
         <div class="navbar">
             <router-link 
                 v-for="(nav,i) in this.navItems" 
                 :key="i"
                 :to="nav.link"
-                v-tippy="{placement: 'bottom', arrow: 'true'}"
-                :content="nav.label"
+                style="transition: all .3s"
             >
-                <font-awesome-icon :icon="nav.iconName" size="2x" />
+                <el-button 
+                    size="small"
+                    round
+                    @mouseover.native="navItems[i].isHover=true"
+                    @mouseleave.native="navItems[i].isHover=false"
+                >
+                    <font-awesome-icon :icon="nav.iconName" size="lg" />
+                    <div 
+                        style="display:inline-block; margin-left: .25rem"
+                        v-if="navItems[i].isHover"
+                    >
+                        {{nav.label}}
+                    </div>
+
+                </el-button>
             </router-link>
         </div>
     </div>
+
 </template>
 
 <script lang="ts">
@@ -21,6 +36,7 @@ type navItem = {
     label: string,
     iconName: string,
     link: string,
+    isHover: boolean;
 }
 
 @Component
@@ -31,16 +47,19 @@ export default class Navbar extends Vue {
             label: 'Home',
             iconName: 'home',
             link: '/',
+            isHover: false,
         },
         {
             label: 'Projects',
             iconName: 'code',
             link: '/projects',
+            isHover: false,
         },
         {
             label: 'Resume',
             iconName: 'file-alt',
             link: '/resume',
+            isHover: false,
         },
     ]; 
 }
@@ -56,10 +75,4 @@ export default class Navbar extends Vue {
         display: flex;
         justify-content: right;
     }
-
-    .navbar a {
-        padding: .25rem;
-        color: black;
-    }
-
 </style>
