@@ -16,8 +16,8 @@
                 >
                     <font-awesome-icon :icon="nav.iconName" size="lg" />
                     <div 
-                        style="display:inline-block; margin-left: .25rem"
-                        v-if="navItems[i].isHover"
+                        style="margin-left: .25rem"
+                        :style="{display: navItems[i].isHover?'inline-block':'none'}"
                     >
                         {{nav.label}}
                     </div>

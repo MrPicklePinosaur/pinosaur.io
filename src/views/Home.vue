@@ -27,14 +27,17 @@
 
     <div class="about">
       <p style="margin: 0">I am</p>
+
       <ul style="margin: 0; text-align: left">
-        <li>a game developer</li>
+        <li>an indie game developer</li>
         <li>an aspiring web developer</li>
-        <li>a first year student at UWaterloo</li>
+        <li>a first year CS student at UWaterloo</li>
 
       </ul>
+
+      <p>I can use</p>
       <img
-        v-for="(icon,i) in ['csharp_icon.png','java_icon.png','javascript_icon.png','python_icon.png','typescript_icon.png']" 
+        v-for="(icon,i) in ['python_icon.png','java_icon.png','csharp_icon.png','javascript_icon.png','typescript_icon.png']" 
         :key="i"
         :src="require('@/assets/icons/'+icon)"
         class="skill-icon"
@@ -117,5 +120,7 @@ export default class Home extends Vue {
     width: 2rem;
     height: auto;
     image-rendering: pixelated;
+    padding-left: .25rem;
+    padding-right: .25rem;
   }
 </style>

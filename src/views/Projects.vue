@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <div>
+  <div class="projects-main">
+
+    <div class="header"> 
+
+      <img class="projects-banner" :src="require('@/assets/projects_banner.png')" />
+
       <el-input
         class="project-search"
         autocomplete="off"
@@ -8,48 +12,49 @@
         placeholder="search projects"
         v-model="searchBarContents"
       ></el-input>
-    </div>
 
-    <div class="tag-search-container"> 
-      
-      <el-tag
-          class="selected-tag-tag"
-          v-for="(tag, i) in searchTags"
-          :key="i" 
-          :style="{color: tag.textColor}"
-          closable
-          :color="tag.color"
-          @close="onCloseTag(tag)"
-      >{{tag.name}}</el-tag>
+      <div class="tag-search-container"> 
+        
+        <el-tag
+            class="selected-tag-tag"
+            v-for="(tag, i) in searchTags"
+            :key="i" 
+            :style="{color: tag.textColor}"
+            closable
+            :color="tag.color"
+            @close="onCloseTag(tag)"
+        >{{tag.name}}</el-tag>
 
-      <div class="new-tag-main">
-        <el-select 
-          v-if="isInputtingTag" 
-          class="new-tag-input inline-input" 
-          size="small"
-          popper-class=""
-          placeholder="Select"
-          v-model="searchTagContents"
-          filterable
-          no-match-text="No Matches"
-          no-data-text="No Data"
-          @blur="onSubmitTag"
-          @change="onSubmitTag"
-        ><el-option
-            v-for="(tag,i) in getTagNames"
-            :key="i"
-            :label="tag"
-            :value="tag"
-          ></el-option>
-        </el-select>
+        <div class="new-tag-main">
+          <el-select 
+            v-if="isInputtingTag" 
+            class="new-tag-input inline-input" 
+            size="small"
+            popper-class=""
+            placeholder="Select"
+            v-model="searchTagContents"
+            filterable
+            no-match-text="No Matches"
+            no-data-text="No Data"
+            @blur="onSubmitTag"
+            @change="onSubmitTag"
+          ><el-option
+              v-for="(tag,i) in getTagNames"
+              :key="i"
+              :label="tag"
+              :value="tag"
+            ></el-option>
+          </el-select>
 
-        <el-button 
-          v-else class="new-tag-button" 
-          size="small"
-          @click="onNewTagClicked"
-        >
-          + New Tag
-        </el-button>
+          <el-button 
+            v-else class="new-tag-button" 
+            size="small"
+            @click="onNewTagClicked"
+          >
+            + New Tag
+          </el-button>
+        </div>
+
       </div>
 
     </div>
@@ -143,14 +148,47 @@ export default class Projects extends Vue{
 </script>
 
 <style>
+  .projects-main {
+    background-image: url('../assets/background2.gif');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+    image-rendering: pixelated;
+
+    height: 100vh;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .projects-banner {
+    width: 30%;
+    height: auto;
+    margin-bottom: 1rem;
+
+    transform: translateY(0px);
+    animation: float 5s ease-in-out infinite;
+  }
 
   .project-search {
     width: 25%;
+  }
+  .project-search input {
+    text-align: center;
   }
   
   .tag-search-container {
     display: flex;
     flex-direction: row;
+    align-items:center;
+
+    padding: .5rem;
   }
 
   .new-tag-main {
@@ -169,10 +207,24 @@ export default class Projects extends Vue{
   .project-grid {
     --min-card-size: 200px;
 
+    margin-left: 1rem;
+    margin-right: 1rem;
+
     display: grid;
     gap: 1rem;
 
     grid-template-columns: repeat(auto-fill, minmax(var(--min-card-size), 1fr));
   }
 
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-1rem);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
 </style>
