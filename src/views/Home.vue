@@ -3,7 +3,7 @@
 
     <div class="header">    
 
-      <p style="color: black; padding: 0; margin: 0;">Hey, I'm</p>
+      <p style="color: white; font-weight: bold; font-size: 2rem; padding: 0; margin: 0;">Hey, I'm</p>
 
       <img class="banner" src="@/assets/banner1.gif"/>
 
@@ -33,6 +33,12 @@
         <li>a first year student at UWaterloo</li>
 
       </ul>
+      <img
+        v-for="(icon,i) in ['csharp_icon.png','java_icon.png','javascript_icon.png','python_icon.png','typescript_icon.png']" 
+        :key="i"
+        :src="require('@/assets/icons/'+icon)"
+        class="skill-icon"
+      />
     </div>
 
   </div>
@@ -48,7 +54,7 @@ export default class Home extends Vue {
   contactIcons = [
     {
       iconName: 'github',
-      hoverColor: '#424242',
+      hoverColor: '#B0B0B0',
       link: '',
     },
     {
@@ -69,14 +75,19 @@ export default class Home extends Vue {
 <style scoped>
 
   .header {
-    padding-top: 5rem;    
-    padding-bottom: 3rem;
-    background: url('../assets/background.png');
+    padding-top: 7rem;    
+    padding-bottom: 7rem;
+    background: url('../assets/background.gif');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    image-rendering: pixelated;
   }
 
   .banner {
     width: 75%;
     height: auto;
+    image-rendering: pixelated;
   }
 
   .links {
@@ -84,18 +95,27 @@ export default class Home extends Vue {
   }
 
   .about {
-    box-shadow: 0 -2px 10px black;
+    box-shadow: 0 -1px 5px black;
     height: 20rem;
   }
 
   .link-icon {
     padding-left: .25rem;
     padding-right: .25rem;
-    color: black; 
+    color: white; 
+  }
+
+  .link-icon svg {
+    transition: all 0.3s;
   }
 
   .link-icon svg:hover {
     color: var(--hover-color);
   }
 
+  .skill-icon {
+    width: 2rem;
+    height: auto;
+    image-rendering: pixelated;
+  }
 </style>
