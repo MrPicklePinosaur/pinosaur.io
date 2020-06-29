@@ -26,14 +26,22 @@
     </div>
 
     <div class="about">
-      <p style="margin: 0">I am</p>
 
-      <ul style="margin: 0; text-align: left">
-        <li>an indie game developer</li>
-        <li>an aspiring web developer</li>
-        <li>a first year CS student at UWaterloo</li>
+      <div style="display:flex;flex-direction:row;justify-content:center;padding:2rem;">
 
-      </ul>
+        <img :src="require('@/assets/pinosaur.png')" class="profile-pic" />
+
+        <div style="flex-direction:column;text-align:left">
+        <p style="margin: 0">I am</p>
+
+        <ul style="margin: 0; text-align: left">
+          <li>an indie game developer</li>
+          <li>an aspiring web developer</li>
+          <li>a first year CS student at UWaterloo</li>
+        </ul>
+        </div>
+
+      </div>
 
       <p>I can use</p>
       <img
@@ -98,8 +106,13 @@ export default class Home extends Vue {
   }
 
   .about {
-    box-shadow: 0 -1px 5px black;
     height: 20rem;
+  }
+
+  .profile-pic {
+    border-radius: 50%;
+    width: 20%;
+    height: auto;
   }
 
   .link-icon {

@@ -148,6 +148,7 @@ export default class Projects extends Vue{
 </script>
 
 <style>
+
   .projects-main {
     background-image: url('../assets/background2.gif');
     background-repeat: no-repeat;

@@ -12,7 +12,7 @@
                     size="small"
                     round
                     @mouseover.native="navItems[i].isHover=true"
-                    @mouseleave.native="navItems[i].isHover=false"
+                    @mouseleave.native="navItems[i].isHover=true"
                 >
                     <font-awesome-icon :icon="nav.iconName" size="lg" />
                     <div 
