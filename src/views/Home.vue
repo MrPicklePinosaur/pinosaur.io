@@ -32,7 +32,7 @@
         <img :src="require('@/assets/pinosaur.png')" class="profile-pic" />
 
         <div style="flex-direction:column;text-align:left">
-        <p style="margin: 0">I am</p>
+        <p style="margin: 0">...and I am</p>
 
         <ul style="margin: 0; text-align: left">
           <li>an indie game developer</li>

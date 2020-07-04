@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{projectInfo.name}}</h1>
+        <h1 style="margin: 0;">{{projectInfo.name}}</h1>
 
         <a 
             :href="projectInfo.links.githubLink"
